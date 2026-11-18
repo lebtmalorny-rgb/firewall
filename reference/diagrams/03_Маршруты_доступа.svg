@@ -1,169 +1,180 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1108" viewBox="0 0 1080 1108" role="img" aria-labelledby="heading description">
-<title id="heading">Как пользователь попадает в OpenStack и виртуальные машины</title>
-<desc id="description">Пять маршрутов. Панель и API через публичный VIP на control. Браузерная консоль через noVNC на control к VNC выбранной ВМ на compute. SSH через Floating IP, DNAT и группу безопасности к гостевой ОС. Внутренние соединения служб с RabbitMQ и БД. Две ВМ в сети проекта и возможный туннель между гипервизорами.</desc>
-<style>
-text {font-family: Arial, "DejaVu Sans", sans-serif}
-.title {font-size:31px;font-weight:700;fill:#122d42}
-.sub {font-size:17px;fill:#385266}
-.lane {font-size:21px;font-weight:700;fill:#19394d}
-.tag {font-size:13px;font-weight:700;letter-spacing:.45px}
-.name {font-size:19px;font-weight:700;fill:#172f40}
-.note {font-size:15px;fill:#324d60}
-.edge {font-size:15px;font-weight:700;fill:#253f53}
-.net {font-size:14px;fill:#415a6b}
-</style>
-<rect x="0" y="0" width="1080" height="1108" rx="0" fill="#ffffff" stroke="none"/>
-<text x="26" y="43" class="title">Как пользователь попадает в сервис или ВМ</text>
-<text x="26" y="73" class="sub">Стрелка показывает, кто открывает соединение. Под стрелкой указана сеть.</text>
-<path d="M26 89L1054 89" stroke="#d3dfe4" stroke-width="1" fill="none"/>
-<text x="26" y="118" class="lane">Панель Horizon и OpenStack API</text>
-<rect x="26" y="131" width="164" height="76" rx="9" fill="#eff4f6" stroke="#a8bbc4"/>
-<text x="38" y="150" class="tag" fill="#3d586a">ПОЛЬЗОВАТЕЛЬ</text>
-<text x="38" y="174" class="name">Браузер / CLI</text>
-<text x="38" y="195" class="note">Клиентская сеть</text>
-<rect x="300" y="131" width="160" height="76" rx="9" fill="#eaf4ff" stroke="#8eafd0"/>
-<text x="312" y="150" class="tag" fill="#245a88">NETWORK</text>
-<text x="312" y="174" class="name">VIP / HAProxy</text>
-<text x="312" y="195" class="note">Публичный вход</text>
-<rect x="574" y="131" width="480" height="76" rx="9" fill="#f1effc" stroke="#aaa0cf"/>
-<text x="586" y="150" class="tag" fill="#59458a">CONTROL  ·  HOST-FIREWALL</text>
-<text x="586" y="174" class="name">Horizon 80/443  ·  Keystone 5000  ·  Nova 8774</text>
-<text x="586" y="195" class="note">Порт TCP слушает соответствующий сервис</text>
-<path d="M194 169L291 169" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M289 164.5L296 169L289 173.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="245.0" y="158" class="edge" text-anchor="middle">TCP 443¹</text>
-<text x="245.0" y="190" class="net" text-anchor="middle">публичная</text>
-<path d="M464 169L565 169" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M563 164.5L570 169L563 173.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="517.0" y="158" class="edge" text-anchor="middle">по сервису</text>
-<text x="517.0" y="190" class="net" text-anchor="middle">сеть API</text>
-<text x="26" y="246" class="lane">Экран ВМ в браузере через noVNC</text>
-<rect x="26" y="259" width="164" height="76" rx="9" fill="#eff4f6" stroke="#a8bbc4"/>
-<text x="38" y="278" class="tag" fill="#3d586a">ПОЛЬЗОВАТЕЛЬ</text>
-<text x="38" y="302" class="name">Браузер</text>
-<text x="38" y="323" class="note">URL консоли Nova</text>
-<rect x="300" y="259" width="160" height="76" rx="9" fill="#eaf4ff" stroke="#8eafd0"/>
-<text x="312" y="278" class="tag" fill="#245a88">NETWORK</text>
-<text x="312" y="302" class="name">VIP / HAProxy</text>
-<text x="312" y="323" class="note">WebSocket</text>
-<rect x="574" y="259" width="170" height="76" rx="9" fill="#f1effc" stroke="#aaa0cf"/>
-<text x="586" y="278" class="tag" fill="#59458a">CONTROL</text>
-<text x="586" y="302" class="name">noVNC-прокси</text>
-<text x="586" y="323" class="note">nova-novncproxy</text>
-<rect x="846" y="259" width="208" height="76" rx="9" fill="#e8f6f2" stroke="#8fb8ad"/>
-<text x="858" y="278" class="tag" fill="#206553">COMPUTE</text>
-<text x="858" y="302" class="name">VNC-консоль ВМ</text>
-<text x="858" y="323" class="note">Сокет гипервизора</text>
-<path d="M194 297L291 297" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M289 292.5L296 297L289 301.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="245.0" y="286" class="edge" text-anchor="middle">443¹ / 6080</text>
-<text x="245.0" y="318" class="net" text-anchor="middle">публичная</text>
-<path d="M464 297L565 297" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M563 292.5L570 297L563 301.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="517.0" y="286" class="edge" text-anchor="middle">TCP 6080</text>
-<text x="517.0" y="318" class="net" text-anchor="middle">сеть API</text>
-<path d="M748 297L837 297" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M835 292.5L842 297L835 301.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="795.0" y="286" class="edge" text-anchor="middle">5900–5999</text>
-<text x="795.0" y="318" class="net" text-anchor="middle">TCP · сеть API</text>
-<text x="26" y="374" class="lane">SSH в гостевую ОС по Floating IP</text>
-<rect x="26" y="387" width="164" height="76" rx="9" fill="#eff4f6" stroke="#a8bbc4"/>
-<text x="38" y="406" class="tag" fill="#3d586a">ПОЛЬЗОВАТЕЛЬ</text>
-<text x="38" y="430" class="name">SSH-клиент</text>
-<text x="38" y="451" class="note">Разрешённый IP</text>
-<rect x="300" y="387" width="160" height="76" rx="9" fill="#eaf4ff" stroke="#8eafd0"/>
-<text x="312" y="406" class="tag" fill="#245a88">ВНЕШНЯЯ СЕТЬ</text>
-<text x="312" y="430" class="name">Floating IP</text>
-<text x="312" y="451" class="note">Адрес этой ВМ</text>
-<rect x="574" y="387" width="170" height="76" rx="9" fill="#eaf4ff" stroke="#8eafd0"/>
-<text x="586" y="406" class="tag" fill="#245a88">NEUTRON</text>
-<text x="586" y="430" class="name">Маршрутизатор</text>
-<text x="586" y="451" class="note">DNAT на fixed IP</text>
-<rect x="846" y="387" width="208" height="76" rx="9" fill="#fff4e2" stroke="#d4b37e"/>
-<text x="858" y="406" class="tag" fill="#795320">ВМ НА COMPUTE</text>
-<text x="858" y="430" class="name">SG порта → sshd</text>
-<text x="858" y="451" class="note">TCP 22 внутри ВМ</text>
-<path d="M194 425L291 425" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M289 420.5L296 425L289 429.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="245.0" y="414" class="edge" text-anchor="middle">TCP 22</text>
-<text x="245.0" y="446" class="net" text-anchor="middle">маршрут к FIP</text>
-<path d="M464 425L565 425" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M563 420.5L570 425L563 429.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="517.0" y="414" class="edge" text-anchor="middle">TCP 22</text>
-<text x="517.0" y="446" class="net" text-anchor="middle">внешняя сеть</text>
-<path d="M748 425L837 425" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M835 420.5L842 425L835 429.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="795.0" y="414" class="edge" text-anchor="middle">TCP 22</text>
-<text x="795.0" y="446" class="net" text-anchor="middle">сеть проекта</text>
-<path d="M26 486L1054 486" stroke="#d3dfe4" stroke-width="1" fill="none"/>
-<text x="26" y="517" class="lane">Служебный обмен внутри OpenStack</text>
-<rect x="26" y="530" width="254" height="76" rx="9" fill="#e8f6f2" stroke="#8fb8ad"/>
-<text x="38" y="549" class="tag" fill="#206553">COMPUTE</text>
-<text x="38" y="573" class="name">nova-compute</text>
-<text x="38" y="594" class="note">Обмен сообщениями Nova</text>
-<rect x="596" y="530" width="458" height="76" rx="9" fill="#f1effc" stroke="#aaa0cf"/>
-<text x="608" y="549" class="tag" fill="#59458a">CONTROL  ·  HOST-FIREWALL</text>
-<text x="608" y="573" class="name">RabbitMQ</text>
-<text x="608" y="594" class="note">5671 с TLS или 5672 без TLS</text>
-<path d="M284 568L587 568" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M585 563.5L592 568L585 572.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="438.0" y="557" class="edge" text-anchor="middle">TCP 5671 / 5672</text>
-<text x="438.0" y="589" class="net" text-anchor="middle">служебная сеть API</text>
-<rect x="26" y="616" width="254" height="76" rx="9" fill="#f1effc" stroke="#aaa0cf"/>
-<text x="38" y="635" class="tag" fill="#59458a">CONTROL</text>
-<text x="38" y="659" class="name">Nova API</text>
-<text x="38" y="680" class="note">Обращается к БД</text>
-<rect x="459" y="616" width="192" height="76" rx="9" fill="#f1effc" stroke="#aaa0cf"/>
-<text x="471" y="635" class="tag" fill="#59458a">ВНУТРЕННИЙ ВХОД</text>
-<text x="471" y="659" class="name">ProxySQL</text>
-<text x="471" y="680" class="note">Если включён</text>
-<rect x="846" y="616" width="208" height="76" rx="9" fill="#f1effc" stroke="#aaa0cf"/>
-<text x="858" y="635" class="tag" fill="#59458a">CONTROL</text>
-<text x="858" y="659" class="name">MariaDB</text>
-<text x="858" y="680" class="note">Узел базы данных</text>
-<path d="M284 654L450 654" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M448 649.5L455 654L448 658.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="369.5" y="643" class="edge" text-anchor="middle">TCP 3306²</text>
-<text x="369.5" y="675" class="net" text-anchor="middle">сеть API</text>
-<path d="M655 654L837 654" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M835 649.5L842 654L835 658.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="748.5" y="643" class="edge" text-anchor="middle">TCP 3306²</text>
-<text x="748.5" y="675" class="net" text-anchor="middle">сеть API</text>
-<path d="M26 712L1054 712" stroke="#d3dfe4" stroke-width="1" fill="none"/>
-<text x="26" y="741" class="lane">Между ВМ в одной сети проекта</text>
-<rect x="26" y="754" width="203" height="76" rx="9" fill="#fff4e2" stroke="#d4b37e"/>
-<text x="38" y="773" class="tag" fill="#795320">ВМ-А</text>
-<text x="38" y="797" class="name">Клиент</text>
-<text x="38" y="818" class="note">Исходящие правила SG</text>
-<rect x="362" y="754" width="362" height="76" rx="9" fill="#eaf4ff" stroke="#8eafd0"/>
-<text x="374" y="773" class="tag" fill="#245a88">NEUTRON</text>
-<text x="374" y="797" class="name">Виртуальная сеть</text>
-<text x="374" y="818" class="note">На одном compute — локальная коммутация</text>
-<rect x="846" y="754" width="208" height="76" rx="9" fill="#fff4e2" stroke="#d4b37e"/>
-<text x="858" y="773" class="tag" fill="#795320">ВМ-Б</text>
-<text x="858" y="797" class="name">SG порта → сервис</text>
-<text x="858" y="818" class="note">TCP 8080 в показе</text>
-<path d="M233 792L353 792" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M351 787.5L358 792L351 796.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="295.5" y="781" class="edge" text-anchor="middle">TCP 8080</text>
-<text x="295.5" y="813" class="net" text-anchor="middle">сеть проекта</text>
-<path d="M728 792L837 792" stroke="#516e7e" stroke-width="2" fill="none"/>
-<path d="M835 787.5L842 792L835 796.5" fill="none" stroke="#516e7e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="785.0" y="781" class="edge" text-anchor="middle">TCP 8080</text>
-<text x="785.0" y="813" class="net" text-anchor="middle">сеть проекта</text>
-<text x="26" y="854" class="note">При VXLAN между узлами добавляется UDP 4789, при Geneve — UDP 6081. Внутри остаётся TCP 8080.</text>
-<rect x="26" y="870" width="502" height="72" rx="8" fill="#f1effc" stroke="#aaa0cf"/>
-<text x="39" y="891" class="tag" fill="#59458a">CONTROL  ·  ДРУГИЕ API</text>
-<text x="39" y="913" class="note">Cinder 8776  ·  Glance 9292  ·  Neutron 9696  ·  Placement 8780</text>
-<text x="39" y="934" class="note">TCP, по правилам для опубликованных API.</text>
-<rect x="540" y="870" width="514" height="72" rx="8" fill="#e8f6f2" stroke="#8fb8ad"/>
-<text x="553" y="891" class="tag" fill="#206553">COMPUTE  ·  СЛУЖЕБНЫЕ ВХОДЫ</text>
-<text x="553" y="913" class="note">libvirt с control и compute: TCP 16509, при TLS также 16514.</text>
-<text x="553" y="934" class="note">Миграция с другого compute: TCP 8022 и 49152–49261.</text>
-<rect x="26" y="953" width="1028" height="36" rx="8" fill="#fcf0ed" stroke="#e7c0b5"/>
-<text x="40" y="976" class="note">Обычному клиенту закрыт прямой вход к БД (3306), RabbitMQ (5671/5672) и VNC на compute (5900–5999).</text>
-<rect x="0" y="1003" width="1080" height="105" rx="0" fill="#f2f6f8" stroke="none"/>
-<text x="26" y="1027" class="sub">Host-firewall проверяет вход на IP узла. Security Group (SG) проверяет трафик порта ВМ.</text>
-<text x="26" y="1055" class="note">¹ 443 — единый вход с HTTPS. При раздельных входах берите порт из публичного URL сервиса или консоли.</text>
-<text x="26" y="1081" class="note">² 3306 — обычный порт. При отключённом ProxySQL используйте фактический внутренний адрес БД.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="1480" viewBox="0 0 1120 1480" role="img" aria-labelledby="title desc">
+<title id="title">OpenStack PVS — дерево сетевых подключений и правил kolla-host-input</title>
+<desc id="desc">Верхние ветви показывают путь к API, консоли и гостевой ВМ и область действия политики узла. Ветвь входящих правил раскрыта ниже по ролям control, compute, network, storage и monitoring. В каждом листе видны порт и источник.</desc>
+<rect width="1120" height="1480" fill="#ffffff"/>
+<g font-family="Arial, DejaVu Sans, sans-serif">
+<rect x="326" y="17" width="468" height="66" fill="#e6eff5" stroke="#658598" stroke-width="1.6"/>
+<text x="560" y="46" text-anchor="middle" font-size="27" font-weight="700" fill="#162f40">OpenStack PVS · сети и порты</text>
+<text x="560" y="69" text-anchor="middle" font-size="16" font-weight="400" fill="#455f6e">Откуда приходит соединение и кто его проверяет</text>
+<path d="M560 83 L560 97" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M284 112 L284 97 L824 97 L824 112" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<rect x="20" y="112" width="528" height="59" fill="#eaf4fb" stroke="#8caabb" stroke-width="1.3"/>
+<text x="34" y="137" text-anchor="start" font-size="21" font-weight="700" fill="#235672">Как пользователь попадает в сервис или ВМ</text>
+<text x="34" y="159" text-anchor="start" font-size="15" font-weight="400" fill="#455f6e">Стрелки внутри блоков показывают направление соединения.</text>
+<rect x="574" y="112" width="500" height="59" fill="#eaf0f5" stroke="#849baa" stroke-width="1.3"/>
+<text x="588" y="137" text-anchor="start" font-size="21" font-weight="700" fill="#334f60">Политика узла   kolla-host-input</text>
+<text x="588" y="159" text-anchor="start" font-size="15" font-weight="400" fill="#455f6e">ingress ANY → egress HOST   ·   priority −500   ·   target CONTINUE</text>
+<rect x="41" y="186" width="507" height="100" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="209" text-anchor="start" font-size="18" font-weight="700" fill="#235672">Панель Horizon и публичные API</text>
+<text x="53" y="232" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Клиент → публичный VIP / HAProxy → control по сети API.</text>
+<text x="53" y="253" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">TCP 443 при едином HTTPS-входе. Иначе — порт из URL.</text>
+<text x="53" y="274" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Клиентам из client sources доступен и прямой IP ряда API.</text>
+<rect x="41" y="296" width="507" height="79" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="319" text-anchor="start" font-size="18" font-weight="700" fill="#235672">Экран ВМ в браузере · noVNC</text>
+<text x="53" y="342" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Браузер → VIP (443 или 6080) → noVNC на control (6080).</text>
+<text x="53" y="363" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Прокси → TCP 5900–5999 на compute по сети API.</text>
+<rect x="41" y="385" width="507" height="79" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="408" text-anchor="start" font-size="18" font-weight="700" fill="#235672">SSH в гостевую ОС · TCP 22</text>
+<text x="53" y="431" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Клиент → Floating IP во внешней сети → DNAT Neutron.</text>
+<text x="53" y="452" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">В сети проекта: SG порта → fixed IP ВМ → sshd.</text>
+<rect x="41" y="474" width="507" height="79" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="497" text-anchor="start" font-size="18" font-weight="700" fill="#235672">Между двумя ВМ в одной подсети</text>
+<text x="53" y="520" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">ВМ-А → SG выхода → сеть проекта → SG входа → ВМ-Б.</text>
+<text x="53" y="541" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">В показе TCP 8080. На одном compute трафик идёт локально.</text>
+<rect x="41" y="563" width="507" height="79" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="586" text-anchor="start" font-size="18" font-weight="700" fill="#235672">Между службами платформы · сеть API</text>
+<text x="53" y="609" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">nova-compute → RabbitMQ на control · TCP 5671 или 5672.</text>
+<text x="53" y="630" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Nova API → ProxySQL (если включён) → MariaDB · TCP 3306.</text>
+<path d="M27 171 L27 602" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 236 L41 236" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 335 L41 335" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 424 L41 424" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 513 L41 513" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 602 L41 602" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<rect x="595" y="186" width="479" height="79" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="607" y="209" text-anchor="start" font-size="18" font-weight="700" fill="#334f60">IN · вход на IP узла</text>
+<text x="607" y="232" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">SSH (обычно TCP 22), ICMP и ICMPv6 — с любого адреса.</text>
+<text x="607" y="253" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Новый вход без подходящего разрешения → DROP.</text>
+<rect x="595" y="275" width="479" height="79" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="607" y="298" text-anchor="start" font-size="18" font-weight="700" fill="#334f60">OUT · исходящее соединение узла</text>
+<text x="607" y="321" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Путь от узла наружу не входит в эту политику.</text>
+<text x="607" y="342" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Доступ зависит от маршрута, ACL и внешнего МСЭ.</text>
+<rect x="595" y="364" width="479" height="79" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="607" y="387" text-anchor="start" font-size="18" font-weight="700" fill="#334f60">Контейнер с network_mode=host</text>
+<text x="607" y="410" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Сервис слушает порт прямо в сетевом пространстве узла.</text>
+<text x="607" y="431" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Его вход проверяет host-firewall. Порт ВМ защищает SG.</text>
+<rect x="595" y="453" width="479" height="79" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="607" y="476" text-anchor="start" font-size="18" font-weight="700" fill="#334f60">Кто указан в источниках</text>
+<text x="607" y="499" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">operator sources добавляются к TCP/UDP-потокам каталога.</text>
+<text x="607" y="520" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">client sources — к client_services с источником loadbalancer.</text>
+<rect x="595" y="542" width="479" height="100" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="607" y="565" text-anchor="start" font-size="18" font-weight="700" fill="#334f60">Как проверить доступ к брокеру</text>
+<text x="607" y="588" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">На control: sudo ss -lntp — найдите слушающий порт.</text>
+<text x="607" y="609" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">На compute и клиенте: nc -vz -w 3 "$CONTROL" "$MQ"</text>
+<text x="607" y="630" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">С compute — открыто. С обычного клиента — закрыто.</text>
+<path d="M581 171 L581 592" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M581 225 L595 225" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M581 314 L595 314" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M581 403 L595 403" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M581 492 L595 492" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M581 592 L595 592" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M1074 225 L1097 225 L1097 683 L822 683" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<rect x="298" y="658" width="524" height="50" fill="#e6eff5" stroke="#658598" stroke-width="1.3"/>
+<text x="560" y="679" text-anchor="middle" font-size="21" font-weight="700" fill="#162f40">Входы на узлы по роли назначения</text>
+<text x="560" y="699" text-anchor="middle" font-size="15" font-weight="400" fill="#455f6e">Сервис и порт ← разрешённый источник. По умолчанию TCP.</text>
+<path d="M560 708 L560 725" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M193 741 L193 725 L920 725 L920 741" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M557 725 L557 741" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<rect x="20" y="741" width="345" height="59" fill="#f0eef8" stroke="#a8a0c0" stroke-width="1.3"/>
+<text x="34" y="766" text-anchor="start" font-size="21" font-weight="700" fill="#534774">CONTROL</text>
+<text x="34" y="788" text-anchor="start" font-size="15" font-weight="400" fill="#455f6e">API и службы управления</text>
+<rect x="383" y="741" width="348" height="59" fill="#eaf5f0" stroke="#8bada1" stroke-width="1.3"/>
+<text x="397" y="766" text-anchor="start" font-size="21" font-weight="700" fill="#285d4d">COMPUTE</text>
+<text x="397" y="788" text-anchor="start" font-size="15" font-weight="400" fill="#455f6e">Гипервизор и консоли ВМ</text>
+<rect x="750" y="741" width="346" height="59" fill="#eff3f5" stroke="#9fadb5" stroke-width="1.3"/>
+<text x="764" y="766" text-anchor="start" font-size="21" font-weight="700" fill="#394e5d">Другие роли</text>
+<text x="764" y="788" text-anchor="start" font-size="15" font-weight="400" fill="#455f6e">network, storage и мониторинг</text>
+<rect x="41" y="815" width="324" height="155" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="838" text-anchor="start" font-size="18" font-weight="700" fill="#534774">API и панель · LB и клиенты</text>
+<text x="53" y="858" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Horizon 80/443 · Keystone 5000</text>
+<text x="53" y="878" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Glance 9292 · Nova API 8774</text>
+<text x="53" y="898" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Cinder 8776 · Neutron 9696</text>
+<text x="53" y="918" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Placement 8780 · noVNC 6080</text>
+<text x="53" y="938" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">OpenSearch Dashboards 5601</text>
+<text x="53" y="958" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Barbican 9311</text>
+<rect x="41" y="980" width="324" height="115" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="1003" text-anchor="start" font-size="18" font-weight="700" fill="#534774">Брокер RabbitMQ</text>
+<text x="53" y="1023" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">5671 (TLS) или 5672 ← common</text>
+<text x="53" y="1043" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">4369, 25672 ← control</text>
+<text x="53" y="1063" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">6000–6500 ← rabbitmq</text>
+<text x="53" y="1083" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">15672 ← LB</text>
+<rect x="41" y="1105" width="324" height="115" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="1128" text-anchor="start" font-size="18" font-weight="700" fill="#534774">База данных и прокси</text>
+<text x="53" y="1148" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">MariaDB 3306 ← common, LB</text>
+<text x="53" y="1168" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">4567, 4568, 4444 ← mariadb</text>
+<text x="53" y="1188" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">ProxySQL 3306 ← LB</text>
+<text x="53" y="1208" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">ProxySQL 6032 ← common¹</text>
+<rect x="41" y="1230" width="324" height="115" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="53" y="1253" text-anchor="start" font-size="18" font-weight="700" fill="#534774">Внутренние службы</text>
+<text x="53" y="1273" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Memcached 11211 ← common</text>
+<text x="53" y="1293" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">etcd 2379/2380 ← control</text>
+<text x="53" y="1313" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Fernet SSH 8023 ← keystone</text>
+<text x="53" y="1333" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">UDP 5405 Corosync ← hacluster</text>
+<path d="M27 800 L27 1287" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 892 L41 892" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 1037 L41 1037" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 1162 L41 1162" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M27 1287 L41 1287" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<rect x="404" y="815" width="327" height="75" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="416" y="838" text-anchor="start" font-size="18" font-weight="700" fill="#285d4d">Консоли ВМ</text>
+<text x="416" y="858" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">VNC 5900–5999 ← nova-novncproxy</text>
+<text x="416" y="878" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Serial 10000–20000 ← nova-serialproxy</text>
+<rect x="404" y="900" width="327" height="75" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="416" y="923" text-anchor="start" font-size="18" font-weight="700" fill="#285d4d">Управление libvirt</text>
+<text x="416" y="943" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">16509 ← control, compute</text>
+<text x="416" y="963" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">16514 ← те же узлы при libvirt_tls</text>
+<rect x="404" y="985" width="327" height="75" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="416" y="1008" text-anchor="start" font-size="18" font-weight="700" fill="#285d4d">Миграция между compute</text>
+<text x="416" y="1028" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Nova SSH 8022 ← compute</text>
+<text x="416" y="1048" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Данные 49152–49261 ← compute</text>
+<rect x="404" y="1070" width="327" height="115" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="416" y="1093" text-anchor="start" font-size="18" font-weight="700" fill="#285d4d">Туннели Neutron</text>
+<text x="416" y="1113" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">UDP 4789 VXLAN ← openvswitch</text>
+<text x="416" y="1133" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">UDP 6081 Geneve ← openvswitch</text>
+<text x="416" y="1153" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Выбор зависит от сети стенда.</text>
+<text x="416" y="1173" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Сверьте tunnel IP с IP в правиле.</text>
+<rect x="404" y="1195" width="327" height="55" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="416" y="1218" text-anchor="start" font-size="18" font-weight="700" fill="#285d4d">Pacemaker Remote</text>
+<text x="416" y="1238" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">3121 ← hacluster</text>
+<rect x="404" y="1260" width="327" height="75" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="416" y="1283" text-anchor="start" font-size="18" font-weight="700" fill="#285d4d">Экспортеры на compute</text>
+<text x="416" y="1303" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">9100 node, 9177 libvirt ← monitoring</text>
+<text x="416" y="1323" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">18080 cAdvisor ← monitoring</text>
+<path d="M390 800 L390 1297" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M390 852 L404 852" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M390 937 L404 937" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M390 1022 L404 1022" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M390 1127 L404 1127" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M390 1222 L404 1222" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M390 1297 L404 1297" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<rect x="771" y="815" width="325" height="95" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="783" y="838" text-anchor="start" font-size="18" font-weight="700" fill="#394e5d">network · балансировщик</text>
+<text x="783" y="858" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">VIP → API на control (см. левую ветку).</text>
+<text x="783" y="878" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">HAProxy 1984, 61313 ← monitoring¹</text>
+<text x="783" y="898" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">VRRP (IP 112) ← loadbalancer</text>
+<rect x="771" y="920" width="325" height="55" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="783" y="943" text-anchor="start" font-size="18" font-weight="700" fill="#394e5d">storage · iSCSI</text>
+<text x="783" y="963" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">3260 ← compute, control</text>
+<rect x="771" y="985" width="325" height="135" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="783" y="1008" text-anchor="start" font-size="18" font-weight="700" fill="#394e5d">Мониторинг</text>
+<text x="783" y="1028" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Prometheus 9091 ← monitoring, LB</text>
+<text x="783" y="1048" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Alertmanager 9093 ← monitoring, LB</text>
+<text x="783" y="1068" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Кластер 9094 ← monitoring</text>
+<text x="783" y="1088" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Node exporter 9100 ← monitoring</text>
+<text x="783" y="1108" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Grafana 3000 ← LB, monitoring, клиенты</text>
+<rect x="771" y="1130" width="325" height="75" fill="#ffffff" stroke="#a8b8c2" stroke-width="1"/>
+<text x="783" y="1153" text-anchor="start" font-size="18" font-weight="700" fill="#394e5d">Журналы и аудит</text>
+<text x="783" y="1173" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Fluentd UDP 5140 ← common</text>
+<text x="783" y="1193" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Webhook 19890 ← Alertmanager</text>
+<path d="M757 800 L757 1167" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M757 862 L771 862" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M757 947 L771 947" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M757 1052 L771 1052" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M757 1167 L771 1167" fill="none" stroke="#8399a6" stroke-width="1.8" stroke-linejoin="round"/>
+<rect x="20" y="1369" width="1076" height="96" fill="#f4f7f9" stroke="#c0cbd2" stroke-width="1"/>
+<text x="34" y="1392" text-anchor="start" font-size="17" font-weight="700" fill="#162f40">Как читать дерево</text>
+<text x="34" y="1414" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">LB = loadbalancer. Группа common включает control, compute, network, storage и monitoring. SG = группа безопасности порта ВМ.</text>
+<text x="34" y="1435" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">¹ На VIP для ProxySQL 6032 и HAProxy 61313 группа узлов-источников — loadbalancer. Показаны основные потоки активных ролей.</text>
+<text x="34" y="1455" text-anchor="start" font-size="16" font-weight="400" fill="#2c4352">Для обычного клиента вне операторских и внутренних групп прямые входы на БД, брокер и VNC-порт compute закрыты.</text>
+</g>
 </svg>
