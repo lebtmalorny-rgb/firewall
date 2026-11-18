@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="930" viewBox="0 0 1400 930">
+<rect width="1400" height="930" fill="white"/>
+<text x="45" y="56" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#182b42">Сети стенда и точки проверки</text>
+<text x="45" y="90" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#52647b">Универсальная схема для заполнения  •  CIDR, VLAN и интерфейсы назначает администратор  •  Не схема фактического ultra1</text>
+<text x="45" y="136" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#182b42">КЛИЕНТСКАЯ СТОРОНА  •  external/public API не обязательно находится в Интернете</text>
+<rect x="45" y="160" width="260" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="63" y="190" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">К / З  Рабочие места</text>
+<text x="63" y="219" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">К — разрешённый CIDR</text>
+<text x="63" y="244" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">З — другой source IP</text>
+<text x="63" y="269" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">IP / VLAN: заполнить</text>
+<rect x="365" y="160" width="230" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="383" y="190" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Граница сети</text>
+<text x="383" y="219" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Маршрутизация / NAT</text>
+<text x="383" y="244" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Внешний МСЭ / ACL</text>
+<text x="383" y="269" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Интернет — если есть</text>
+<rect x="655" y="160" width="300" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="673" y="190" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">External API VIP</text>
+<text x="673" y="219" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">HAProxy + host-firewall</text>
+<text x="673" y="244" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">FQDN / VLAN: заполнить</text>
+<text x="673" y="269" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">443 либо порты API</text>
+<rect x="1015" y="160" width="340" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="1033" y="190" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Backend API и UI</text>
+<text x="1033" y="219" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">API + host-firewall на узле</text>
+<text x="1033" y="244" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">5000, 8774, 8776, 9292…</text>
+<text x="1033" y="269" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Порты сверить с HAProxy</text>
+<path d="M 305 223 L 355 223" fill="none" stroke="#16815d" stroke-width="3"/>
+<polygon points="355,223 344.1946347717679,228.21958640933477 344.1946347717679,217.78041359066523" fill="#16815d"/>
+<path d="M 595 223 L 645 223" fill="none" stroke="#16815d" stroke-width="3"/>
+<polygon points="645,223 634.1946347717678,228.21958640933477 634.1946347717678,217.78041359066523" fill="#16815d"/>
+<path d="M 955 223 L 1005 223" fill="none" stroke="#16815d" stroke-width="3"/>
+<polygon points="1005,223 994.1946347717678,228.21958640933477 994.1946347717678,217.78041359066523" fill="#16815d"/>
+<text x="46" y="329" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#aa7015">F03/F04: один VIP из двух сетей. F08: отдельно проверить прямой backend — текущий код может его разрешать.</text>
+<text x="45" y="387" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#182b42">УПРАВЛЕНИЕ И ВНУТРЕННИЕ СЕРВИСЫ  •  Требуемое разделение подтверждается VLAN и ACL</text>
+<rect x="45" y="411" width="260" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="63" y="441" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">А  Администратор</text>
+<text x="63" y="470" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Bastion / deployment</text>
+<text x="63" y="495" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">SSH, CLI, браузер</text>
+<text x="63" y="520" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">IP / VLAN: заполнить</text>
+<rect x="365" y="411" width="230" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="383" y="441" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Management VLAN</text>
+<text x="383" y="470" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">SSH обычно 22</text>
+<text x="383" y="495" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Internal/admin API</text>
+<text x="383" y="520" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Отдельный ACL</text>
+<rect x="655" y="411" width="300" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="673" y="441" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Host-firewall</text>
+<text x="673" y="470" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">ANY → HOST, каждый узел</text>
+<text x="673" y="495" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Источники + назначения</text>
+<text x="673" y="520" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">SSH и ICMP — исключения</text>
+<rect x="1015" y="411" width="340" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="1033" y="441" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Internal VIP и узлы</text>
+<text x="1033" y="470" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Control / monitoring / В</text>
+<text x="1033" y="495" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">БД 3306, AMQP 5671/5672</text>
+<text x="1033" y="520" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Кеш и coordination</text>
+<path d="M 305 474 L 355 474" fill="none" stroke="#2864a5" stroke-width="3"/>
+<polygon points="355,474 344.1946347717679,479.21958640933474 344.1946347717679,468.78041359066526" fill="#2864a5"/>
+<path d="M 595 474 L 645 474" fill="none" stroke="#2864a5" stroke-width="3"/>
+<polygon points="645,474 634.1946347717678,479.21958640933474 634.1946347717678,468.78041359066526" fill="#2864a5"/>
+<path d="M 955 474 L 1005 474" fill="none" stroke="#2864a5" stroke-width="3"/>
+<polygon points="1005,474 994.1946347717678,479.21958640933474 994.1946347717678,468.78041359066526" fill="#2864a5"/>
+<text x="46" y="580" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#2864a5">F05/F06: В подключается к БД/брокеру, К — нет. F07: общий SSH allow не заменяет ACL сети управления.</text>
+<text x="45" y="635" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#182b42">СЕТИ ДАННЫХ И ДРУГИЕ ГРАНИЦЫ  •  Проверяются отдельно от доступности API</text>
+<rect x="45" y="659" width="260" height="145" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="63" y="689" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Compute и ВМ</text>
+<text x="63" y="718" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">VM1 → VM2: Neutron SG</text>
+<text x="63" y="743" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Port security / guest firewall</text>
+<text x="63" y="768" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Tenant / provider сеть</text>
+<rect x="365" y="659" width="300" height="145" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="383" y="689" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Tunnel / migration</text>
+<text x="383" y="718" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">UDP 4789 / 6081</text>
+<text x="383" y="743" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">TCP 8022, 49152–49261</text>
+<text x="383" y="768" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">В каталоге network = api</text>
+<rect x="725" y="659" width="300" height="145" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="743" y="689" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Storage и зависимости</text>
+<text x="743" y="718" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">СХД, DNS, NTP, LDAP</text>
+<text x="743" y="743" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Vault/SecMan, registry, SIEM</text>
+<text x="743" y="768" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Свой реестр направлений</text>
+<rect x="1085" y="659" width="270" height="145" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="1103" y="689" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">BMC и внешняя сеть</text>
+<text x="1103" y="718" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">IPMI / Redfish / VPN</text>
+<text x="1103" y="743" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Отдельные сети и ACL</text>
+<text x="1103" y="768" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Не равны API VIP</text>
+<path d="M 305 730 L 355 730" fill="none" stroke="#2864a5" stroke-width="3"/>
+<polygon points="355,730 344.1946347717679,735.2195864093347 344.1946347717679,724.7804135906653" fill="#2864a5"/>
+<text x="45" y="847" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#182b42">Совмещённые сети обозначить явно. Исходящий доступ и доступ к ВМ не считать закрытыми по наличию kolla-host-input.</text>
+<text x="45" y="880" font-family="Arial, sans-serif" font-size="16" font-weight="400" fill="#52647b">Схема размещения не доказывает изоляцию: обязательны положительная и отрицательная пробы, маршрут и соответствующее правило.</text>
+<text x="45" y="907" font-family="Arial, sans-serif" font-size="15" font-weight="400" fill="#52647b">17.11.2026  •  Основание: предоставленный kolla-ansible-pvs.zip  •  Проверка реального стенда обязательна</text>
+</svg>

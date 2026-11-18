@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="930" viewBox="0 0 1400 930">
+<rect width="1400" height="930" fill="white"/>
+<text x="45" y="56" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#182b42">Что разрешает текущий host-firewall</text>
+<text x="45" y="90" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#52647b">Правила на узле: kolla-host-input  •  ANY → HOST  •  Сервис должен быть включён, маршрут и listener проверены</text>
+<text x="50" y="137" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#52647b">ИСТОЧНИК</text>
+<text x="450" y="137" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#52647b">РЕШЕНИЕ СОБСТВЕННОЙ ПОЛИТИКИ</text>
+<text x="1010" y="137" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#52647b">НАЗНАЧЕНИЕ</text>
+<rect x="45" y="165" width="320" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="63" y="195" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">К  Клиентская сеть</text>
+<text x="63" y="224" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">host_firewall_client_sources</text>
+<text x="63" y="249" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Вне operator и peer-групп</text>
+<path d="M 375 231 L 435 231" fill="none" stroke="#16815d" stroke-width="3"/>
+<polygon points="435,231 424.1946347717679,236.21958640933477 424.1946347717679,225.78041359066523" fill="#16815d"/>
+<rect x="445" y="165" width="520" height="135" rx="12" fill="#f4f7fb" stroke="#16815d" stroke-width="1.5"/>
+<text x="463" y="195" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#182b42">Разрешение для выбранных API/UI</text>
+<text x="463" y="224" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">client_services + source_groups loadbalancer</text>
+<text x="463" y="249" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Включает VIP и прямой адрес backend</text>
+<path d="M 975 231 L 1000 231" fill="none" stroke="#16815d" stroke-width="3"/>
+<polygon points="1000,231 989.1946347717678,236.21958640933477 989.1946347717678,225.78041359066523" fill="#16815d"/>
+<rect x="1010" y="165" width="345" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="1028" y="195" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#182b42">API и интерфейсы</text>
+<text x="1028" y="224" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">TCP 80/443, 5000, 8774, 8776</text>
+<text x="1028" y="249" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">9292, 9696, 8780 и включённые</text>
+<text x="1028" y="274" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">дополнительные API/UI</text>
+<rect x="45" y="330" width="320" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="63" y="360" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">К / З  Ограниченный доступ</text>
+<text x="63" y="389" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">К → внутренние службы</text>
+<text x="63" y="414" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">З → API и внутренние службы</text>
+<path d="M 375 396 L 435 396" fill="none" stroke="#bb3d43" stroke-width="3"/>
+<polygon points="435,396 424.1946347717679,401.21958640933474 424.1946347717679,390.78041359066526" fill="#bb3d43"/>
+<rect x="445" y="330" width="520" height="135" rx="12" fill="#f4f7fb" stroke="#bb3d43" stroke-width="1.5"/>
+<text x="463" y="360" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#182b42">Нет подходящего allow → DROP</text>
+<text x="463" y="389" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Источник не входит в иные разрешения</text>
+<text x="463" y="414" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">SSH и ICMP — отдельные исключения</text>
+<path d="M 975 396 L 1000 396" fill="none" stroke="#bb3d43" stroke-width="3"/>
+<polygon points="1000,396 989.1946347717678,401.21958640933474 989.1946347717678,390.78041359066526" fill="#bb3d43"/>
+<rect x="1010" y="330" width="345" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="1028" y="360" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#182b42">Внутренние порты</text>
+<text x="1028" y="389" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">БД 3306, AMQP 5671/5672</text>
+<text x="1028" y="414" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Кеш 11211, etcd 2379/2380</text>
+<text x="1028" y="439" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">API для неразрешённой сети З</text>
+<rect x="45" y="495" width="320" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="63" y="525" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">А / В  Разрешённые источники</text>
+<text x="63" y="554" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">А — operator sources</text>
+<text x="63" y="579" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">В — соответствующие peer-группы</text>
+<path d="M 375 561 L 435 561" fill="none" stroke="#16815d" stroke-width="3"/>
+<polygon points="435,561 424.1946347717679,566.2195864093347 424.1946347717679,555.7804135906653" fill="#16815d"/>
+<rect x="445" y="495" width="520" height="135" rx="12" fill="#f4f7fb" stroke="#16815d" stroke-width="1.5"/>
+<text x="463" y="525" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#182b42">Адресные разрешения по каталогу</text>
+<text x="463" y="554" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">В: только свои source_groups и назначения</text>
+<text x="463" y="579" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">А: все описанные TCP/UDP-потоки</text>
+<path d="M 975 561 L 1000 561" fill="none" stroke="#16815d" stroke-width="3"/>
+<polygon points="1000,561 989.1946347717678,566.2195864093347 989.1946347717678,555.7804135906653" fill="#16815d"/>
+<rect x="1010" y="495" width="345" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="1028" y="525" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#182b42">Службы платформы</text>
+<text x="1028" y="554" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">БД, очередь, coordination, логи</text>
+<text x="1028" y="579" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Миграция, консоли, мониторинг</text>
+<text x="1028" y="604" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Протоколы и порты — в реестре</text>
+<rect x="45" y="660" width="320" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="63" y="690" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#182b42">Любой источник</text>
+<text x="63" y="719" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Включая клиент К и сеть З</text>
+<text x="63" y="744" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">При наличии сетевого пути</text>
+<path d="M 375 726 L 435 726" fill="none" stroke="#aa7015" stroke-width="3"/>
+<polygon points="435,726 424.1946347717679,731.2195864093347 424.1946347717679,720.7804135906653" fill="#aa7015"/>
+<rect x="445" y="660" width="520" height="135" rx="12" fill="#fff7e9" stroke="#aa7015" stroke-width="1.5"/>
+<text x="463" y="690" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#182b42">Общие разрешения без source-фильтра</text>
+<text x="463" y="719" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">SSH TCP на inventory SSH port</text>
+<text x="463" y="744" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">ICMP для IPv4 и ICMPv6</text>
+<path d="M 975 726 L 1000 726" fill="none" stroke="#aa7015" stroke-width="3"/>
+<polygon points="1000,726 989.1946347717678,731.2195864093347 989.1946347717678,720.7804135906653" fill="#aa7015"/>
+<rect x="1010" y="660" width="345" height="135" rx="12" fill="#f4f7fb" stroke="#d4deea" stroke-width="1.5"/>
+<text x="1028" y="690" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#182b42">Узел платформы</text>
+<text x="1028" y="719" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">SSH обычно TCP 22</text>
+<text x="1028" y="744" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">ICMP / ICMPv6</text>
+<text x="1028" y="769" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#182b42">Внешний ACL может ограничить</text>
+<text x="45" y="838" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#182b42">Вне этой политики: общий исходящий доступ, трафик ВМ и внешняя граница сети. Разрешено правилом ≠ доступно из Интернета.</text>
+<text x="45" y="880" font-family="Arial, sans-serif" font-size="16" font-weight="400" fill="#52647b">Зелёный — разрешение модели. Красный — запрет нового соединения. Жёлтый — широкое исключение, требующее отдельной оценки.</text>
+<text x="45" y="907" font-family="Arial, sans-serif" font-size="15" font-weight="400" fill="#52647b">17.11.2026  •  Основание: предоставленный kolla-ansible-pvs.zip  •  Проверка реального стенда обязательна</text>
+</svg>
